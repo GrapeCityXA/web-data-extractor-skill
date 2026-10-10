@@ -46,7 +46,7 @@
 ## 安装与使用
 
 ```bash
-cd web-data-extractor
+cd skills/web-data-extractor-skill
 # 零依赖，无需 npm install，直接运行
 
 # 默认 auto：自动检测页面结构
@@ -180,16 +180,18 @@ temp_skill_web/
 ## 目录结构
 
 ```
-web-data-extractor/
-├── SKILL.md                    # 技能定义（Agent Skills 开放标准：name + description）
-├── index.js                    # 主入口：抓取 → 多类型提取 → 生成页面 → 起服务 → 等待回传
-├── package.json
-├── lib/
-│   ├── server.js               # 零依赖 HTTP 服务：静态资源 + POST /save
-│   ├── extract.js              # 零依赖多类型提取（table/list/dl/blocks/auto）
-│   ├── cdp.js                  # --cdp：连接用户浏览器（CDP）读取渲染后 DOM
-│   └── html-template.js        # 模板读取 + 数据注入（防 </script> 注入）
-├── public/
-│   └── index.template.html     # SpreadJS 设计器页面模板
-└── README.md
+web-data-extractor-skill/           # 仓库根 = Codex 插件根
+├── .codex-plugin/plugin.json       # 插件清单（skills 指向 ./skills/）
+├── README.md
+└── skills/web-data-extractor-skill/   # 技能目录：引用按技能目录解析
+    ├── SKILL.md                    # 技能定义（Agent Skills 开放标准：name + description）
+    ├── index.js                    # 主入口：抓取 → 多类型提取 → 生成页面 → 起服务 → 等待回传
+    ├── package.json
+    ├── lib/
+    │   ├── server.js               # 零依赖 HTTP 服务：静态资源 + POST /save
+    │   ├── extract.js              # 零依赖多类型提取（table/list/dl/blocks/auto）
+    │   ├── cdp.js                  # --cdp：连接用户浏览器（CDP）读取渲染后 DOM
+    │   └── html-template.js        # 模板读取 + 数据注入（防 </script> 注入）
+    └── public/
+        └── index.template.html     # SpreadJS 设计器页面模板
 ```
